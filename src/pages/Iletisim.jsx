@@ -106,6 +106,7 @@ const Container = styled.div`
   .wrapper{
     flex-direction: column !important;
     padding: 0 20px !important;
+    gap: 40px !important;
 
   }
 
@@ -136,7 +137,6 @@ const Iletisim = () => {
 
   const sendEmail = async (e) => {
 
-
     if(mail && username && message){
 
     e.preventDefault();
@@ -162,6 +162,9 @@ const Iletisim = () => {
           progress: undefined,
           theme: "light",
       });
+      setUsername("")
+      setMail("")
+      setMessage("")
     } catch (error) {
         setIsLoading(false)
         toast.error(`Bir hata meydana geldi, lütfen daha sonra tekrar.`, {
@@ -174,6 +177,9 @@ const Iletisim = () => {
           progress: undefined,
           theme: "light",
         });
+        setUsername("")
+        setMail("")
+        setMessage("")
     }
     }
 
