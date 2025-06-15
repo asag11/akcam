@@ -14,6 +14,7 @@ import { setIsHomepage, setIsProjectPage } from "../features/layout/layoutSlice"
 import {  setProjectItem } from "../features/project/projectSlice";
 import MobileTopDropdown from "../components/sections/MobileTopDropdown";
 import DarkOverlay from "../components/sections/DarkOverlay";
+import FooterMobile from "../components/sections/FooterMobile";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -100,9 +101,14 @@ const MainLayout = () => {
             
         </div>
       {
-          path !== "/" &&
+          path !== "/" && windowDimensions.width > 880 &&
           <Footer/>
         }
+      {
+          path !== "/" && windowDimensions.width <= 880 &&
+          <FooterMobile/>
+        }
+        
       </MainContainer>
       {
         isMobileTopDropdownOpen &&
