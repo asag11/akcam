@@ -79,8 +79,6 @@ const Container = styled.nav`
 
 const Topbar = () => {
 
-    const isDarkBg = false
-
     const path = useLocation().pathname
 
     const dispatch = useDispatch()

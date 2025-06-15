@@ -1,7 +1,7 @@
 
 import styled from "styled-components";
 import img from "../images/square.png"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setProjectItem } from "../features/project/projectSlice";
 import useWindowDimensions from "../hooks/useWindowSize";
@@ -169,7 +169,7 @@ const Projeler = () => {
             }
             <GalleryGrid>
           {[...Array(6)].map((_, idx) => (
-          <button className={(activeIndex === idx && windowDimensions.width <= 880) ? "g-item active" : "g-item"} onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi", idx) : handleClick("/projeler/c-evi", idx)}>
+                <button className={(activeIndex === idx && windowDimensions.width <= 880) ? "g-item active" : "g-item"} onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi", idx) : handleClick("/projeler/c-evi", idx)}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
                 </button>
