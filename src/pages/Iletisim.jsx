@@ -135,6 +135,10 @@ const Iletisim = () => {
 
 
   const sendEmail = async (e) => {
+
+
+    if(mail && username && message){
+
     e.preventDefault();
     setIsLoading(true)
     try {
@@ -161,6 +165,20 @@ const Iletisim = () => {
     } catch (error) {
         setIsLoading(false)
         toast.error(`Bir hata meydana geldi, lütfen daha sonra tekrar.`, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+    }
+    }
+
+    else{
+      toast.error(`Lütfen gerekli alanları doldurup tekrar deneyin.`, {
           position: "bottom-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -199,7 +217,7 @@ const Iletisim = () => {
               <InputTextarea data={message} setData={(e) => setMessage(e.target.value)} name={"username"} placeholderText={"Mesaj..."} inputWidth={"100%"} backgroundColor={"#fff"} textColor={"var(--color-dark)"} b placeholderColor={"#b6b4b4"}/>
             </div>
 
-            <Btn bgColor="var(--color-green)" width="200px" height="40px" color="#ffff" radius="8px" fontSize="16px" fontWeight="600" handleClick={(e) =>sendEmail(e)}>{isLoading ? <SmallSpinner size={"20px"} color={"#fff"}/> : "Gönder"}</Btn>
+            <Btn bgColor="var(--color-green)" width="200px" height="40px" color="#ffff" radius="8px" disabled={isLoading} fontSize="16px" fontWeight="600" handleClick={(e) => !isLoading && sendEmail(e)}>{isLoading ? <SmallSpinner size={"20px"} color={"#fff"}/> : "Gönder"}</Btn>
           </div>
         </div>
         <div className="side-map">

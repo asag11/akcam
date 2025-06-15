@@ -16,11 +16,15 @@ const Container = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  &:disabled{
+    cursor: not-allowed;
+  }
 `
 
-const Btn = ({children, width, bgColor, borderColor, height="40px", padding="0", fontSize="14px", fontWeight="600", radius="10px", handleClick, color="#fff" }) => {
+const Btn = ({children, width, bgColor, borderColor, height="40px", padding="0", fontSize="14px", fontWeight="600", radius="10px", handleClick, color="#fff", disabled }) => {
   return (
-    <Container width={width} padding={padding} bgColor={bgColor} borderColor={borderColor} fontSize={fontSize} radius={radius} height={height} fontWeight={fontWeight} onClick={handleClick} color={color}>
+    <Container width={width} padding={padding} bgColor={bgColor} borderColor={borderColor} fontSize={fontSize} radius={radius} height={height} fontWeight={fontWeight} onClick={handleClick} disabled={disabled} color={color}>
         {children}
     </Container>
   )
