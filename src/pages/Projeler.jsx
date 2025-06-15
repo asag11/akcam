@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setProjectItem } from "../features/project/projectSlice";
 import useWindowDimensions from "../hooks/useWindowSize";
 import HeaderMobile from "../components/sections/HeaderMobile";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const Container = styled.div`
@@ -38,16 +38,7 @@ const GalleryGrid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
 
-      .g-item{
-  transition: 1s ease !important;
 
-
-  /* Hover başladığında overlay hemen kayacak */
-  &:hover .overlay {
-  transition: 1s ease !important;
-
-  }
-  }
 
   }
 
@@ -103,6 +94,15 @@ const GalleryGrid = styled.div`
   }
 
   @media (max-width: 880px) {
+    .g-item {
+      /* hover’da hiçbir şey yapma */
+      &:hover .overlay {
+        transform: translate(0, 100%) !important;
+      }
+      &.active .overlay {
+        transform: translate(0, 0) !important;
+      }
+    }
 
   .overlay {
     align-items: center !important;
@@ -129,11 +129,12 @@ const Projeler = () => {
     const navigate = useNavigate()
 
     const {windowDimensions} = useWindowDimensions()
-
+  const [activeIndex, setActiveIndex] = useState(null);
       const timerRef = useRef(null);
 
-  const handeleDelayClick = (path) => {
+  const handeleDelayClick = (path, idx) => {
     // Önceki timer varsa iptal et
+    setActiveIndex(idx)
     if (timerRef.current) clearTimeout(timerRef.current);
 
     // 2000 ms (2s) sonra çalışacak fonksiyonu schedule et
@@ -142,7 +143,7 @@ const Projeler = () => {
       localStorage.setItem("projectItem", JSON.stringify(projectData))
       navigate(path)
       timerRef.current = null;
-    }, 1000);
+    }, 1200);
   };
 
   // Component unmount olduğunda timer'ı temizle
@@ -167,7 +168,14 @@ const Projeler = () => {
                 <HeaderMobile/>
             }
             <GalleryGrid>
-                <button className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
+          {[...Array(6)].map((_, idx) => (
+          <button className={(activeIndex === idx && windowDimensions.width <= 880) ? "g-item active" : "g-item"} onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi", idx) : handleClick("/projeler/c-evi", idx)}>
+                    <img src={img} alt=""/>
+                    <div className="overlay">Lorem, ipsum dolor</div>
+                </button>
+          ))}
+              
+                {/* <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
                 </button>
@@ -186,11 +194,7 @@ const Projeler = () => {
                 <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
-                </button>
-                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
-                    <img src={img} alt=""/>
-                    <div className="overlay">Lorem, ipsum dolor</div>
-                </button>
+                </button> */}
             </GalleryGrid>
         </div>
     </Container>
