@@ -7,6 +7,7 @@ import { setProjectItem } from "../features/project/projectSlice";
 import useWindowDimensions from "../hooks/useWindowSize";
 import HeaderMobile from "../components/sections/HeaderMobile";
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const Container = styled.div`
@@ -161,6 +162,10 @@ const Projeler = () => {
 
 
   return (
+    <>
+      <Helmet>
+        <title>Projeler - Akçam Dekorasyon Line</title>
+      </Helmet>
     <Container>
         <div className="wrapper">
             {
@@ -177,6 +182,8 @@ const Projeler = () => {
             </GalleryGrid>
         </div>
     </Container>
+    </>
+
   )
 }
 

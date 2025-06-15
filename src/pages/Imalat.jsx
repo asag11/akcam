@@ -6,6 +6,7 @@ import hkImage from "../images/hk.png"
 import hkImage2 from "../images/hk2.png"
 import useWindowDimensions from "../hooks/useWindowSize"
 import HeaderMobile from "../components/sections/HeaderMobile"
+import { Helmet } from "react-helmet-async"
 
 const Container = styled.div`
 
@@ -81,6 +82,10 @@ const Imalat = () => {
     const {windowDimensions} = useWindowDimensions()
     
   return (
+    <>
+        <Helmet>
+        <title>İmalat - Akçam Dekorasyon Line</title>
+        </Helmet>
     <Container>
 
         <div className="wrapper">
@@ -107,6 +112,8 @@ const Imalat = () => {
             </div>
         </div>
     </Container>
+    </>
+
   )
 }
 

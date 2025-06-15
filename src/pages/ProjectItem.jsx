@@ -17,6 +17,7 @@ import useWindowDimensions from "../hooks/useWindowSize";
 
 import { MdOutlineKeyboardArrowLeft, MdKeyboardArrowRight  } from "react-icons/md";
 import HeaderMobile from "../components/sections/HeaderMobile";
+import { Helmet } from "react-helmet-async";
 
 const Container = styled.div`
           /* SEÇİMİ TAMAMEN KAPAT */
@@ -198,6 +199,10 @@ const ProjectItem = () => {
     const {windowDimensions} = useWindowDimensions()
 
   return (
+    <>
+        <Helmet>
+            <title>C Evi - Akçam Dekorasyon Line</title>
+        </Helmet>
     <Container>
         <div className="wrapper">
 
@@ -250,6 +255,8 @@ const ProjectItem = () => {
             </div>
         </div>
     </Container>
+    </>
+
   )
 }
 

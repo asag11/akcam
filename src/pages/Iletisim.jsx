@@ -16,7 +16,7 @@ import HeaderMobile from '../components/sections/HeaderMobile';
 import { toast } from "react-toastify"
 import SmallSpinner from '../components/shared/spinners/SmallSpinner';
 import getDateTime from '../helper/getDateTime';
-
+import { Helmet } from 'react-helmet-async';
 const Container = styled.div`
 
 .wrapper{
@@ -200,7 +200,10 @@ const Iletisim = () => {
 
 
   return (
-
+    <>
+      <Helmet>
+        <title>İletişim - Akçam Dekorasyon Line</title>
+      </Helmet>
     <Container>
         <div className="wrapper">
 
@@ -261,6 +264,8 @@ const Iletisim = () => {
         </div>
         </div>
     </Container>
+    </>
+
   );
 }
 

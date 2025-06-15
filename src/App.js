@@ -20,11 +20,12 @@ import Projeler from "./pages/Projeler";
 import Iletisim from "./pages/Iletisim";
 import ProjectItem from "./pages/ProjectItem";
 import ScrollToTop from "./hooks/ScrolltoTop";
-
+import { HelmetProvider } from 'react-helmet-async';
 function App() {
 
 
   return (
+    <HelmetProvider>
     <Router>
         <GlobalStyles />
         <ToastContainer  className={"toast-container"}/>
@@ -47,6 +48,7 @@ function App() {
           </Route>
         </Routes>
     </Router>
+    </HelmetProvider>
   );
 }
 
