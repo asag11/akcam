@@ -191,7 +191,7 @@ const ProjectItem = () => {
 
   const swiperRef = useRef(null);
 
-    const [visibleItems, setVisibleItems] = useState(1);
+    // const [visibleItems, setVisibleItems] = useState(1);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const {windowDimensions} = useWindowDimensions()
@@ -215,7 +215,7 @@ const ProjectItem = () => {
                     <div className="slider">
                         <Swiper
                             modules={[Navigation, Pagination]}
-                            slidesPerView={visibleItems}
+                            slidesPerView={1}
                             onSwiper={(swiper) => { swiperRef.current = swiper}}
                             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
                         >

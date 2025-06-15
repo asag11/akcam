@@ -11,7 +11,7 @@ import Side from "../components/sections/Side";
 import Footer from "../components/sections/Footer";
 import { useEffect } from "react";
 import { setIsHomepage, setIsProjectPage } from "../features/layout/layoutSlice";
-import { setPrejectItem, setProjectItem } from "../features/project/projectSlice";
+import {  setProjectItem } from "../features/project/projectSlice";
 import MobileTopDropdown from "../components/sections/MobileTopDropdown";
 import DarkOverlay from "../components/sections/DarkOverlay";
 
@@ -58,7 +58,7 @@ const MainLayout = () => {
     else{
       dispatch(setIsHomepage(true))
     }
-  },[path])
+  },[path, dispatch])
 
   useEffect(() => {
     if(path.startsWith("/projeler/")){
@@ -68,7 +68,7 @@ const MainLayout = () => {
       dispatch(setIsProjectPage(false))
       dispatch(setProjectItem(null))
     }
-  },[path])
+  },[path, dispatch])
   
   const {
     isHomepage,

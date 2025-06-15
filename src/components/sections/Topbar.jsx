@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 import akcamLogo from "../../images/akcam-logo.svg"
 import akcamLogoDark from "../../images/akcam-dark.svg"
-import { Link, NavLink, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import menuList from "../../utils/menuList"
 import useWindowDimensions from "../../hooks/useWindowSize"
 import { IoMenuOutline } from "react-icons/io5";

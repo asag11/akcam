@@ -1,5 +1,4 @@
 
-import { useSelector } from "react-redux";
 
 const ModalLayout = () => {
 

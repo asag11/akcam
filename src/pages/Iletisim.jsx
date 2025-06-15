@@ -1,7 +1,7 @@
 
 
 import { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import InputText from '../components/shared/input/InputText';
 import InputMail from '../components/shared/input/InputMail';
@@ -112,9 +112,9 @@ const Container = styled.div`
 }  
 `
 
-    const templateId = "template_hcx8ng5"
-    const publickey = "XYuuAUTo0yngYoz-E"
-    const serviceId = "service_61jj3td"
+    // const templateId = "template_hcx8ng5"
+    // const publickey = "XYuuAUTo0yngYoz-E"
+    // const serviceId = "service_61jj3td"
 
 
 export default function ContactForm() {

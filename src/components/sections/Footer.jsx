@@ -74,7 +74,7 @@ const Footer = () => {
         </div>
 
         <div className="icon-list">
-            <a href="https://www.instagram.com/akcammobilya/" target="_blank">
+            <a href="https://www.instagram.com/akcammobilya/" rel="noreferrer" target="_blank">
                 <img src={instagramLogo} alt="" />
             </a>
             <img src={linkedinLogo} alt="" />
