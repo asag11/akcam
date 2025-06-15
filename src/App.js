@@ -19,6 +19,7 @@ import Imalat from "./pages/Imalat";
 import Projeler from "./pages/Projeler";
 import Iletisim from "./pages/Iletisim";
 import ProjectItem from "./pages/ProjectItem";
+import ScrollToTop from "./hooks/ScrolltoTop";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
     <Router>
         <GlobalStyles />
         <ToastContainer  className={"toast-container"}/>
+          <ScrollToTop /> 
         <Routes>
 
           <Route

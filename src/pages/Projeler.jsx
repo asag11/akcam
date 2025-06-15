@@ -174,27 +174,6 @@ const Projeler = () => {
                     <div className="overlay">Lorem, ipsum dolor</div>
                 </button>
           ))}
-              
-                {/* <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
-                    <img src={img} alt=""/>
-                    <div className="overlay">Lorem, ipsum dolor</div>
-                </button>
-                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
-                    <img src={img} alt=""/>
-                    <div className="overlay">Lorem, ipsum dolor</div>
-                </button>
-                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
-                    <img src={img} alt=""/>
-                    <div className="overlay">Lorem, ipsum dolor</div>
-                </button>
-                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
-                    <img src={img} alt=""/>
-                    <div className="overlay">Lorem, ipsum dolor</div>
-                </button>
-                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
-                    <img src={img} alt=""/>
-                    <div className="overlay">Lorem, ipsum dolor</div>
-                </button> */}
             </GalleryGrid>
         </div>
     </Container>
