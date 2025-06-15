@@ -5,6 +5,7 @@ import hkImage2 from "../images/hk2.png"
 import HeaderMobile from "../components/sections/HeaderMobile"
 import useWindowDimensions from "../hooks/useWindowSize"
 import { Helmet } from "react-helmet-async"
+import img from "../images/square.png"
 
 const Container = styled.div`
 
@@ -106,12 +107,16 @@ const Hakkimizda = () => {
 
             <div className="column">
 
-                <img src={hkImage} className="img-container" alt="" />
-                <div className="img-list">
-                    <img src={hkImage2} alt="" />
-                    <img src={hkImage2} alt="" />
-                </div>
-                <img src={hkImage} className="img-container" alt="" />
+                <img src={windowDimensions.width <= 720 ? img : hkImage} className="img-container" alt="" />
+                {
+                    windowDimensions.width > 720 &&
+                    <div className="img-list">
+                        <img src={hkImage2} alt="" />
+                        <img src={hkImage2} alt="" />
+                    </div>
+                }
+                <img src={windowDimensions.width <= 720 ? img : hkImage} className="img-container" alt="" />
+                <img src={windowDimensions.width <= 720 ? img : hkImage} className="img-container" alt="" />
 
             </div>
         </div>

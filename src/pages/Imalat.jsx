@@ -8,6 +8,8 @@ import useWindowDimensions from "../hooks/useWindowSize"
 import HeaderMobile from "../components/sections/HeaderMobile"
 import { Helmet } from "react-helmet-async"
 
+import img from "../images/square.png"
+
 const Container = styled.div`
 
 .wrapper{
@@ -93,6 +95,7 @@ const Imalat = () => {
                 windowDimensions.width <= 880 &&
                 <HeaderMobile/>
             }
+
             <div className="plist">
                 {
                     pList.map(item => (
@@ -103,11 +106,18 @@ const Imalat = () => {
 
             <div className="column">
 
-                <img src={hkImage} className="img-container" alt="" />
-                <div className="img-list">
-                    <img src={hkImage2} alt="" />
-                    <img src={hkImage2} alt="" />
-                </div>
+                <img src={windowDimensions.width <= 720 ? img : hkImage} className="img-container" alt="" />
+                {
+                    windowDimensions.width <= 720 &&
+                    <img src={windowDimensions.width <= 720 ? img : hkImage} className="img-container" alt="" />
+                }
+                {
+                    windowDimensions.width > 720 &&
+                    <div className="img-list">
+                        <img src={hkImage2} alt="" />
+                        <img src={hkImage2} alt="" />
+                    </div>
+                }
 
             </div>
         </div>
