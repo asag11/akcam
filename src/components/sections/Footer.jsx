@@ -47,6 +47,7 @@ const Container = styled.nav`
       @media (max-width: 880px) {
 
         padding: 0 20px !important;
+        margin-top: 40px !important;
 
         .nav-list{
             display: none !important;

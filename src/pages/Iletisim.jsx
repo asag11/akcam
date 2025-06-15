@@ -1,7 +1,7 @@
 
 
 import { useRef, useState } from 'react';
-// import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import InputText from '../components/shared/input/InputText';
 import InputMail from '../components/shared/input/InputMail';
@@ -13,6 +13,10 @@ import phoneIcon from "../images/phone.svg"
 import Btn from '../components/shared/btn/Btn';
 import useWindowDimensions from '../hooks/useWindowSize';
 import HeaderMobile from '../components/sections/HeaderMobile';
+import { toast } from "react-toastify"
+import SmallSpinner from '../components/shared/spinners/SmallSpinner';
+import getDateTime from '../helper/getDateTime';
+
 const Container = styled.div`
 
 .wrapper{
@@ -112,52 +116,63 @@ const Container = styled.div`
 }  
 `
 
-    // const templateId = "template_hcx8ng5"
-    // const publickey = "XYuuAUTo0yngYoz-E"
-    // const serviceId = "service_61jj3td"
-
-
-export default function ContactForm() {
-  //   const [formData, setFormData] = useState({
-  //   name: 'dsadasd',
-  //   mail: 'asag8942@gmail.com',
-  //   message: 'deneeme'
-  // });
-
-  // const [status, setStatus] = useState(null)
-
-  // const sendEmail = async (e) => {
-  //   e.preventDefault();
-  //   setStatus('sending');
-  //   try {
-  //     const result = await emailjs.send(
-  //       serviceId,    // EmailJS Service ID
-  //      templateId,   // EmailJS Template ID
-  //       formData,             // templateParams obje’si
-  //      publickey     // EmailJS Public Key (User ID)
-  //     );
-  //     console.log('E-posta başarıyla gönderildi:', result.text);
-  //     setStatus('success');
-  //   } catch (error) {
-  //     console.error('Gönderim hatası:', error);
-  //     setStatus('error');
-  //   }
-  // };
-    const {windowDimensions} = useWindowDimensions()
-
-  const initialCenterRef = useRef({ lat: 39.594255, lng: 26.962180 });
-  const mapRef = useRef()
-  const onMapLoad = (map) => {
-    mapRef.current = map;
-  };
+const Iletisim = () => {
 
   const [username, setUsername] = useState("")
   const [mail, setMail] = useState("")
   const [message, setMessage] = useState("")
 
-  const handleClick = () => {
+  const [isLoading, setIsLoading] = useState(false)
 
-  }
+  const {windowDimensions} = useWindowDimensions()
+
+  const initialCenterRef = useRef({ lat: 39.594255, lng: 26.962180 });
+
+  const mapRef = useRef()
+  const onMapLoad = (map) => {
+    mapRef.current = map;
+  };
+
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setIsLoading(true)
+    try {
+      // const result = await emailjs.send(
+      await emailjs.send(
+       process.env.REACT_APP_SERVICE_ID,    // EmailJS Service ID
+        process.env.REACT_APP_TEMPLATE_ID,   // EmailJS Template ID
+        { username, mail, message, time: getDateTime()},             // templateParams obje’si
+        process.env.REACT_APP_PUBLIC_KEY     // EmailJS Public Key (User ID)
+      );
+
+      setIsLoading(false)
+
+      toast.success('Gönderim başarı ile gerçekleştirildi.', {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+      });
+    } catch (error) {
+        setIsLoading(false)
+        toast.error(`Bir hata meydana geldi, lütfen daha sonra tekrar.`, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+    }
+  };
+
 
 
   return (
@@ -184,8 +199,7 @@ export default function ContactForm() {
               <InputTextarea data={message} setData={(e) => setMessage(e.target.value)} name={"username"} placeholderText={"Mesaj..."} inputWidth={"100%"} backgroundColor={"#fff"} textColor={"var(--color-dark)"} b placeholderColor={"#b6b4b4"}/>
             </div>
 
-            <Btn bgColor="var(--color-green)" width="200px" height="40px" color="#ffff" radius="8px" fontSize="16px" fontWeight="600" handleClick={handleClick}>Gönder</Btn>
-
+            <Btn bgColor="var(--color-green)" width="200px" height="40px" color="#ffff" radius="8px" fontSize="16px" fontWeight="600" handleClick={(e) =>sendEmail(e)}>{isLoading ? <SmallSpinner size={"20px"} color={"#fff"}/> : "Gönder"}</Btn>
           </div>
         </div>
         <div className="side-map">
@@ -217,24 +231,14 @@ export default function ContactForm() {
       >
           <Marker
             position={{ lat: 39.594255, lng: 26.962180 }}
-            // icon={truck2}
-            
           />
       </GoogleMap>
           </div>
         </div>
         </div>
     </Container>
-
-
-  //   <Container>
-  //  <button onClick={(e) => sendEmail(e)}>
-  //       {status === 'sending' ? 'Gönderiliyor...' : 'Gönder'}
-  //   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error dicta est, excepturi dignissimos accusamus nobis cupiditate expedita pariatur quibusdam ullam?
-  //     </button>
-
-  //   {status === 'success' && <p>Mesajınız başarıyla gönderildi!</p>}
-  //     {status === 'error' && <p>Bir hata oluştu, lütfen tekrar deneyin.</p>}
-  //   </Container>
   );
 }
+
+
+export default Iletisim

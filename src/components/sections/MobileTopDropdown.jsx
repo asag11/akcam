@@ -42,8 +42,8 @@ const Container = styled.div`
 
         .close-btn{
             position: absolute;
-            top: 25px;
-            left: 10px;
+            top: 20px;
+            left: 15px;
             
             .close-icon{
                 width: 16px;

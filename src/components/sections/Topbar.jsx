@@ -89,10 +89,10 @@ const Topbar = () => {
     
 
   return (
-    <Container isDarkBg={isDarkBg}>
+    <Container isDarkBg={path === "/"}>
 
         <Link to={"/"}>
-        <img src={isDarkBg ? akcamLogo : akcamLogoDark } className="logo-icon" alt="" />
+        <img src={path === "/" ? akcamLogo : akcamLogoDark } className="logo-icon" alt="" />
         </Link>
         {
             windowDimensions.width > 880 ?

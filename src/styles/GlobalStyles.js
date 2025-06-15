@@ -6,14 +6,14 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         padding: 0;
         margin: 0;
-        font-family: "Poppins", sans-serif;
-
+ font-family: "Inter", sans-serif;
     }
     .special-label{
         display: none;
     }
     body{
-        font-family: 'Raleway', sans-serif;
+ font-family: "Inter", sans-serif;
+
         font-variant-numeric: lining-nums;
         background-color: #fff;
 

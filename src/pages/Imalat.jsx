@@ -25,7 +25,7 @@ const Container = styled.div`
 
         p{
             font-size: 18px;
-            font-weight: 400;
+            font-weight: 300;
         }
     }
 
@@ -63,6 +63,10 @@ const Container = styled.div`
     padding: 0 20px !important;
 
   }
+
+    p{
+    font-size: 16px !important;
+}
 
 }  
 `

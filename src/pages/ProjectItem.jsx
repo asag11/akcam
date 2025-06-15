@@ -116,7 +116,7 @@ const Container = styled.div`
         margin-top: 30px;
 
         p{
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 300;
             line-height: 25px;
         }
@@ -151,13 +151,14 @@ const Container = styled.div`
         height: 300px !important;
     }
 
+        p{
+            font-size: 16px !important;
+        }
+
 
     }
 
-    .arr-container{
-        width: 20px !important;
-        height: 20px !important;
-    }
+ 
 
 }  
 `

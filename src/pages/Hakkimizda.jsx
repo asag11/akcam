@@ -15,7 +15,7 @@ const Container = styled.div`
     flex-direction: column;
     
     .top-entry{
-        font-weight: 500;
+        font-weight: 400;
         font-size: 18px;
         padding-bottom: 20px;
     }
@@ -28,7 +28,7 @@ const Container = styled.div`
 
         p{
             font-size: 18px;
-            font-weight: 00;
+            font-weight: 300;
         }
     }
 
@@ -64,6 +64,10 @@ const Container = styled.div`
 
         .wrapper{
             padding: 0 20px !important;
+        }
+
+        .top-entry, p{
+            font-size: 16px !important;
         }
     }  
 `

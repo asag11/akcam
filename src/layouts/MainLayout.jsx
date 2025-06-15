@@ -67,6 +67,7 @@ const MainLayout = () => {
     else{
       dispatch(setIsProjectPage(false))
       dispatch(setProjectItem(null))
+      localStorage.removeItem('projectItem');
     }
   },[path, dispatch])
   

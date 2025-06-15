@@ -60,6 +60,8 @@ const Side = () => {
     const path = useLocation().pathname
 
     const { projectItem } = useSelector(state => state.project)
+
+    const projectData = projectItem ? projectItem : JSON.parse(localStorage.getItem("projectItem"))
     const { isProjectPage } = useSelector(state => state.layout)
   return (
     <Container isProjectPage={path.startsWith("/projeler/")}>
@@ -68,17 +70,17 @@ const Side = () => {
             <h3>{path === "/hakkimizda" ?  "Biz Kimiz ?" : path === "/imalat" ? "İmalat" : path === "/projeler" ? "Projeler" : "İletişim"}</h3>
         }
         {
-            projectItem &&
+            projectData &&
             <>
-            <h3>{projectItem.name}</h3>
+            <h3>{projectData.name}</h3>
             <div className="project-desc-container">
                 <div className="desc-item">
                     <SlLocationPin className="desc-icon"/>
-                    <span className="desc-text">{projectItem.address}</span>
+                    <span className="desc-text">{projectData.address}</span>
                 </div>
                 <div className="desc-item">
                     <CiCalendar className="desc-icon"/>
-                    <span className="desc-text">{projectItem.year}</span>
+                    <span className="desc-text">{projectData.year}</span>
                 </div>
             </div>
             </>

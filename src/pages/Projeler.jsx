@@ -1,11 +1,12 @@
 
 import styled from "styled-components";
 import img from "../images/square.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setProjectItem } from "../features/project/projectSlice";
 import useWindowDimensions from "../hooks/useWindowSize";
 import HeaderMobile from "../components/sections/HeaderMobile";
+import { useEffect, useRef } from "react";
 
 
 const Container = styled.div`
@@ -36,6 +37,18 @@ const GalleryGrid = styled.div`
   /* 768px altı: 2 sütun */
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
+
+      .g-item{
+  transition: 1s ease !important;
+
+
+  /* Hover başladığında overlay hemen kayacak */
+  &:hover .overlay {
+  transition: 1s ease !important;
+
+  }
+  }
+
   }
 
   /* 480px altı: 1 sütun */
@@ -81,13 +94,24 @@ const GalleryGrid = styled.div`
     justify-content: center;
     align-items: flex-end;
     border-radius: 12px;
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 500;
     color: #616161;
     padding-bottom: 20px;
 
   }
   }
+
+  @media (max-width: 880px) {
+
+  .overlay {
+    align-items: center !important;
+    font-size: 16px !important;
+    padding-bottom: 0 !important;
+
+  }
+
+} 
 
 
 
@@ -102,7 +126,38 @@ const projectData = {
 const Projeler = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const {windowDimensions} = useWindowDimensions()
+
+      const timerRef = useRef(null);
+
+  const handeleDelayClick = (path) => {
+    // Önceki timer varsa iptal et
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    // 2000 ms (2s) sonra çalışacak fonksiyonu schedule et
+    timerRef.current = setTimeout(() => {
+      dispatch(setProjectItem(projectData))
+      localStorage.setItem("projectItem", JSON.stringify(projectData))
+      navigate(path)
+      timerRef.current = null;
+    }, 1000);
+  };
+
+  // Component unmount olduğunda timer'ı temizle
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  const handleClick = (path) => {
+    dispatch(setProjectItem(projectData))
+    localStorage.setItem("projectItem", JSON.stringify(projectData))
+    navigate(path)
+  }
+
 
   return (
     <Container>
@@ -112,30 +167,30 @@ const Projeler = () => {
                 <HeaderMobile/>
             }
             <GalleryGrid>
-                <Link to={"/projeler/c-evi"} className="g-item" onClick={() => dispatch(setProjectItem(projectData))}>
+                <button className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
-                </Link>
-                <Link to={"/projeler/c-evi"} className="g-item" onClick={() => dispatch(setProjectItem(projectData))}>
+                </button>
+                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
-                </Link>
-                <Link to={"/projeler/c-evi"} className="g-item" onClick={() => dispatch(setProjectItem(projectData))}>
+                </button>
+                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
-                </Link>
-                <Link to={"/projeler/c-evi"} className="g-item" onClick={() => dispatch(setProjectItem(projectData))}>
+                </button>
+                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
-                </Link>
-                <Link to={"/projeler/c-evi"} className="g-item" onClick={() => dispatch(setProjectItem(projectData))}>
+                </button>
+                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
-                </Link>
-                <Link to={"/projeler/c-evi"} className="g-item" onClick={() => dispatch(setProjectItem(projectData))}>
+                </button>
+                <button  className="g-item" onClick={() => windowDimensions.width <= 880 ?  handeleDelayClick("/projeler/c-evi") : handleClick("/projeler/c-evi")}>
                     <img src={img} alt=""/>
                     <div className="overlay">Lorem, ipsum dolor</div>
-                </Link>
+                </button>
             </GalleryGrid>
         </div>
     </Container>
