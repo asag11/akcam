@@ -15,12 +15,11 @@ const Container = styled.nav`
     position: fixed;
     background: ${({isHomePage}) => isHomePage ? "linear-gradient(179.28deg, rgba(255, 255, 255, 0.075) 0.62%, rgba(255, 255, 255, 0) 99.38%)" : "#fff" };
     top: ${({isHomePage}) => isHomePage ? "30px" : 0 };
-    padding: ${({isHomePage}) => !isHomePage ? "30px 40px 20px 40px" : 0 };
+    padding: ${({isHomePage}) => !isHomePage ? "30px 40px 20px 40px" : "0 40px" };
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
     z-index: 20;
 
     .nav-list{
@@ -55,7 +54,8 @@ const Container = styled.nav`
             width: 100px !important;
         }
 
-    padding: ${({isHomePage}) => !isHomePage ? "15px" : "0 20px" };
+    padding: ${({isHomePage}) => !isHomePage ? "15px 20px" : "0 20px" } !important;
+    top: ${({isHomePage}) => isHomePage ? "10px" : 0 } !important;
 
 
     }  
