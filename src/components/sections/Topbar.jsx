@@ -11,14 +11,15 @@ import { setMobileTopDropdownOpen } from "../../features/layout/layoutSlice"
 
 const Container = styled.nav`
     width: 100%;
-    height: 65px;
+    height: ${({isHomePage}) => isHomePage ? "65px" : "auto" };
     position: fixed;
-    background: linear-gradient(179.28deg, rgba(255, 255, 255, 0.075) 0.62%, rgba(255, 255, 255, 0) 99.38%);
+    background: ${({isHomePage}) => isHomePage ? "linear-gradient(179.28deg, rgba(255, 255, 255, 0.075) 0.62%, rgba(255, 255, 255, 0) 99.38%)" : "#fff" };
+    top: ${({isHomePage}) => isHomePage ? "30px" : 0 };
+    padding: ${({isHomePage}) => !isHomePage ? "30px 40px 20px 40px" : 0 };
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    top: 30px;
     padding: 0 40px;
     z-index: 20;
 
@@ -44,6 +45,7 @@ const Container = styled.nav`
 
     .menu-icon{
         font-size: 2rem;
+            color: ${({isDarkBg}) => isDarkBg ? "var(--color-light)" : "var(--color-dark)"};
 
     }
 
@@ -53,14 +55,13 @@ const Container = styled.nav`
             width: 100px !important;
         }
 
-        padding: 0 20px !important;
+    padding: ${({isHomePage}) => !isHomePage ? "20px" : "0 20px" };
 
 
     }  
 
     @media (max-width: 600px) {
 
-        top: 15px !important;
 
 
         .logo-icon{
@@ -83,11 +84,12 @@ const Topbar = () => {
 
     const dispatch = useDispatch()
 
-      const {windowDimensions} = useWindowDimensions()
+    const {windowDimensions} = useWindowDimensions()
+
     
 
   return (
-    <Container isDarkBg={path === "/"}>
+    <Container isDarkBg={path === "/"} isHomePage={path === "/"}>
 
         <Link to={"/"}>
         <img src={path === "/" ? akcamLogo : akcamLogoDark } className="logo-icon" alt="" />

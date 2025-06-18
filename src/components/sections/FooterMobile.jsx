@@ -2,7 +2,7 @@
 
 import styled from "styled-components"
 import menuList from "../../utils/menuList"
-import { NavLink, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import instagramLogo from "../../images/instagram.svg"
 import linkedinLogo from "../../images/linkedin.svg"
 
@@ -17,6 +17,12 @@ const Container = styled.nav`
     gap: 20px;
     margin-top: 40px !important;
 
+    .cp{
+        font-size: 14px;
+        font-weight: 300;
+        color: #757575;
+    }
+
 
     .nav-list{
         display: flex;
@@ -27,7 +33,7 @@ const Container = styled.nav`
         .nav-item{
             background-color: transparent;
             color: ${({isDarkBg}) => isDarkBg ? "var(--color-light)" : "var(--color-gray)"};
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 300;
             
         }
@@ -61,16 +67,14 @@ const Container = styled.nav`
 
 const FooterMobile = () => {
 
-    const path = useLocation().pathname
-
   return (
     <Container>
               <div className="nav-list">
                 {
                     menuList.map(item => (
-                        <NavLink to={item.path} className={path === item.path ? "active-nav-item nav-item" : "nav-item"}  key={item.id}>
-                            {item.text}
-                        </NavLink>
+                    <Link to={item.path} className={"nav-item"}  key={item.id}>
+                        {item.text}
+                    </Link>
                     ))
                 }
         </div>
