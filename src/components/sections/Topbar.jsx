@@ -55,6 +55,7 @@ const Container = styled.nav`
         }
 
     padding: ${({isHomePage}) => !isHomePage ? "15px 20px" : "0 20px" } !important;
+    padding-bottom: 10px !important;
     top: ${({isHomePage}) => isHomePage ? "10px" : 0 } !important;
 
 
